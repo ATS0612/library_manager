@@ -1,9 +1,12 @@
 package com.example.config;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -27,8 +30,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.logout()
 				.logoutUrl("/logout") //ログアウト処理のパス
 				.logoutSuccessUrl("/loginForm"); //ログアウト成功後のパス
-
 	}
+	
 
 	@Override
 	// WebSecurity型の引数を持ったconfigure()を追加します
@@ -40,5 +43,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		*/
 		web.ignoring().antMatchers("/css/**", "/js/**");
 	}
-
+	
+	//ハッシュ(暗号化)
+  @Bean
+  public PasswordEncoder passwordEncoder() {
+      return new BCryptPasswordEncoder();
+  }
 }
