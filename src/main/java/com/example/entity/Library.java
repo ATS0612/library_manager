@@ -24,6 +24,9 @@ public class Library {
     @Column(name = "USER_ID")
     private Integer user_id;
     
+//    @Column(name = "SAMPLE")
+//    private String sample;
+    
 
     public Integer getId() {
         return this.id;
