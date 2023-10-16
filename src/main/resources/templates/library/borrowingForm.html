@@ -24,7 +24,7 @@
 							<h4 class="title">Borrow book data</h4>
 						</div>
 						<div class="content">
-							<form action="@{/library/borrow}" object="${library}" method="post">
+							<form action="@{/library/borrow/{id}(id=${library.id})}" object="${library}" method="post">
 								<div th:text="*{name}" class="book-title">
 									
 								</div>

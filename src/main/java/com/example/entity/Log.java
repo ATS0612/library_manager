@@ -40,6 +40,14 @@ public class Log {
     public void setId(Integer id) {
         this.id = id;
     }
+    
+    
+    public Integer getLibrary_id() {
+      return this.library_id;
+	  }
+	  public void setLibrary_id(Integer library_id) {
+	      this.library_id = library_id;
+	  }
 
     
     public Integer getUser_id() {
