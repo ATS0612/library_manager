@@ -1,6 +1,7 @@
 package com.example.service;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -8,16 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.entity.Library;
+import com.example.entity.Log;
 import com.example.repository.LibraryRepository;
 import com.example.repository.LogRepository;
-import com.example.entity.Log;
 
 @Service
 public class LibraryService {
 
 	private final LibraryRepository libraryRepository;
 	private LogRepository logRepository;
-	private LocalDateTime localDateTime;
 
 
 	@Autowired
@@ -47,8 +47,12 @@ public class LibraryService {
 		Log log = new Log();
     log.setLibraryId(id);
     log.setUserId(loginUser.getUser().getId());
+    // 現在の時間
     log.setRentDate(LocalDateTime.now());
-    log.setReturnDueDate(LocalDateTime.parse(returnDueDate + “T00:00:00”));
+    // 引数の形で時間表示(DateTimeFormatter)を用意 (String型)
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    // formatterの型(フォーマット)を変える
+    log.setReturnDueDate(LocalDateTime.parse(returnDueDate + " 00:00:00", formatter));
     log.setReturnDate(null);
     logRepository.save(log);
 	}
