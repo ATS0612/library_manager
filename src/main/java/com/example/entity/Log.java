@@ -1,5 +1,7 @@
 package com.example.entity;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,13 +27,13 @@ public class Log {
     private Integer user_id;
     
     @Column(name = "RENT_DATE")
-    private String rent_date;
+    private LocalDateTime rent_date;
     
     @Column(name = "RETURN_DATE")
-    private String return_date;
+    private LocalDateTime return_date;
     
     @Column(name = "RETURN_DUE_DATE")
-    private String return_due_date;
+    private LocalDateTime return_due_date;
     
 
     public Integer getId() {
@@ -42,42 +44,42 @@ public class Log {
     }
     
     
-    public Integer getLibrary_id() {
+    public Integer getLibraryId() {
       return this.library_id;
 	  }
-	  public void setLibrary_id(Integer library_id) {
+	  public void setLibraryId(Integer library_id) {
 	      this.library_id = library_id;
 	  }
 
     
-    public Integer getUser_id() {
+    public Integer getUserId() {
       return this.user_id;
     }
-    public void setUser_id(Integer user_id) {
+    public void setUserId(Integer user_id) {
       this.user_id = user_id;
     }
     
     
-    public String getRent_date() {
+    public LocalDateTime getRentDate() {
       return this.rent_date;
     }
-    public void setRent_date(String rent_date) {
+    public void setRentDate(LocalDateTime rent_date) {
       this.rent_date = rent_date;
     }
     
     
-    public String getReturn_date() {
+    public LocalDateTime getReturnDate() {
       return this.return_date;
     }
-    public void setReturn_date(String return_date) {
+    public void setReturnDate(LocalDateTime return_date) {
       this.return_date = return_date;
     }
     
     
-    public String getReturn_due_date() {
+    public LocalDateTime getReturnDueDate() {
       return this.return_due_date;
     }
-    public void setReturn_due_date(String return_due_date) {
+    public void setReturnDueDate(LocalDateTime return_due_date) {
       this.return_due_date = return_due_date;
     }
 }

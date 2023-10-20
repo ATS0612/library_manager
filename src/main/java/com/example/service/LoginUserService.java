@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import com.example.entity.User;
 import com.example.repository.UserRepository;
 
+// 利用者が送信したユーザー情報を使ってUSERテーブルよりデータを取得し、
+// LoginUserを生成するためのクラス
 @Service
 public class LoginUserService implements UserDetailsService {
 
@@ -33,5 +35,6 @@ public class LoginUserService implements UserDetailsService {
 
         // ユーザ情報が見つかった場合は、UserDetailsを生成し返却
         return new LoginUser(user);
+        //　↑LoginUserクラスの引数一つのコンストラクタが作動し、email情報が入る
     }
 }

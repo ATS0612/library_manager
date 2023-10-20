@@ -8,7 +8,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.example.entity.User;
 
-public class LoginUser implements UserDetails {
+// ログイン中のユーザーに関する次の情報を管理するためのクラス
+public class LoginUser implements UserDetails {// 認証・認可に関係するメソッドが定義されたインターフェース
 
     // Userオブジェクト(Entityクラス)
     private final User user;
@@ -18,7 +19,7 @@ public class LoginUser implements UserDetails {
         this.user = user;
     }
 
-    // Entityクラスである、Userオブジェクトのゲッター
+    // Entityクラスである、Userオブジェクト userのgetter
     public User getUser() {
         return this.user;
     }

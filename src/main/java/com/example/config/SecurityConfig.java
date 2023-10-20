@@ -9,7 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class SecurityConfig extends WebSecurityConfigurerAdapter { // ←セキュリティ設定用は必ず継承
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		// 認可の設定
@@ -19,7 +19,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 		//ログイン処理
 		http.formLogin()
-				.loginProcessingUrl("/login") // ログイン処理のパス
+				.loginProcessingUrl("/login") // ログイン処理のパス /loginにPOSTメソッドでアクセスで認証される
 				.loginPage("/loginForm") // ログインページの指定
 				.usernameParameter("email") // ログイン用フォームで利用する部品名(ユーザー名)
 				.passwordParameter("password") // ログイン用フォームで利用する部品名(パスワード)
