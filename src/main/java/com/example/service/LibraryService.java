@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.entity.Library;
-import com.example.form.LibraryForm;
 import com.example.repository.LibraryRepository;
 
 @Service
@@ -31,10 +30,10 @@ public class LibraryService {
 	}
 	
 	
-	public Library update(Integer id ,LibraryForm libraryForm) {
-		Library library = this.findById(id);
-		library.setUser_id(libraryForm.getUser_id());
-		
+	public void update(Integer id, String returnDueDate, LoginUser loginUser) {
+		Library library = libraryRepository.findById(id);
+		library.setUserId(loginUser.getId());
+		this.libraryRepository.save(library); // データベースに保存
 	}
 
 }

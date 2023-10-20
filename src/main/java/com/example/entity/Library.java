@@ -44,11 +44,11 @@ public class Library {
         this.name = name;
     }
     
-    public Integer getUser_id() {
+    public Integer getUserId() {
       return this.user_id;
     }
 
-    public void setUser_id(Integer user_id) {
+    public void setUserId(Integer user_id) {
       this.user_id = user_id;
     }
 }

@@ -3,6 +3,7 @@ package com.example.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,11 +41,13 @@ public class LibraryController {
     	return "library/borrowingForm";
     }
     
-    @PostMapping("/borrow/{id}")
-    public String borrow(@RequestParam("id") Integer id, @RequestParam("return_due_date") String returnDueDate, @AuthenticationPrincipal LoginUser loginUser) {
-//    Library library = this.libraryService.findById(id);
-    this.libraryService.update(id, itemForm);
-    
+    // 更新メソッド
+    @PostMapping("/borrow")
+    public String borrow(@RequestParam("id") Integer id
+    										, @RequestParam("return_due_date") String returnDueDate
+    										, @AuthenticationPrincipal LoginUser loginUser) {
+    this.libraryService.update(id, returnDueDate, loginUser);
+    return "redirect:/library";
     }
     
 }
