@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.example.entity.User;
 
 // ログイン中のユーザーに関する次の情報を管理するためのクラス
+// User.javaからデータをもってきている
 public class LoginUser implements UserDetails {// 認証・認可に関係するメソッドが定義されたインターフェース
 
     // Userオブジェクト(Entityクラス)

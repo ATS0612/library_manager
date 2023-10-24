@@ -19,7 +19,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter { // ←セキ�
 
 		//ログイン処理
 		http.formLogin()
-				.loginProcessingUrl("/login") // ログイン処理のパス /loginにPOSTメソッドでアクセスで認証される
+				.loginProcessingUrl("/login") // ログイン処理のパス /loginにPOSTメソッドでアクセスして認証される
 				.loginPage("/loginForm") // ログインページの指定
 				.usernameParameter("email") // ログイン用フォームで利用する部品名(ユーザー名)
 				.passwordParameter("password") // ログイン用フォームで利用する部品名(パスワード)

@@ -36,12 +36,12 @@ public class LibraryService {
 		return library; // つまり 選択されたidの情報？を返す
 	}
 	
-	
+	// 書籍の貸し出し処理 更新メソッド
 	public void update(Integer id, String returnDueDate, LoginUser loginUser) {
 		Optional<Library> optionalLibrary  = libraryRepository.findById(id);
 		Library library = optionalLibrary.get();
 		library.setUserId(loginUser.getUser().getId());
-		this.libraryRepository.save(library); // データベースに保存
+		libraryRepository.save(library); // データベースに保存
 		
 		
 		Log log = new Log();

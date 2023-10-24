@@ -41,7 +41,7 @@ public class LibraryController {
     	return "library/borrowingForm";
     }
     
-    // 更新メソッド
+    // 書籍の貸し出し処理 更新メソッド
     @PostMapping("/borrow")
     public String borrow(@RequestParam("id") Integer id
     										, @RequestParam("return_due_date") String returnDueDate
