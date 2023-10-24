@@ -25,7 +25,7 @@
 						</div>
 						<div class="content">
 							
-<!--							/{id}(id=${library.id})-->
+<!--							/{id}(id=${library.id})              object="${log}"-->
 							<form th:action="@{/library/borrow}" object="${library}" method="post">
 								<div th:text="*{library.name}" class="book-title"> <!--id情報から本の名前表示-->
 								</div>
@@ -33,7 +33,7 @@
 								<hr>
 								<div class="form-group">
 									<label>return date</label>
-									<input class="form-control border-input" th:firld="*{returnDueDate}" type="date" placeholder="date">
+									<input class="form-control border-input" th:firld="*{return_due_date}" type="date" placeholder="date">
 								<!--									th:firld="*{returnDueDate}"-->
 								</div>
 								

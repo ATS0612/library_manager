@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.entity.Library;
+import com.example.entity.Log;
 import com.example.service.LibraryService;
 import com.example.service.LoginUser;
 
@@ -37,7 +38,9 @@ public class LibraryController {
     @GetMapping("/borrow")
     public String borrowingForm(@RequestParam("id") Integer id, Model model) {
     	Library library = this.libraryService.findById(id);
+    	Log log = new Log();
     	model.addAttribute("library",library);
+    	model.addAttribute("log", log);
     	return "library/borrowingForm";
     }
     

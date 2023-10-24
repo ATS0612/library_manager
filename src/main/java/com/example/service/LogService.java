@@ -21,4 +21,8 @@ public class LogService {
     public List<Log> findAll() {
       return this.logRepository.findAll();
   }
+    
+    public Log save(Log log) {
+    	return this.logRepository.save(log);
+    }
 }

@@ -18,10 +18,13 @@ public class LibraryService {
 
 	private final LibraryRepository libraryRepository;
 	private LogRepository logRepository;
+	private LogService logService;
 
 
 	@Autowired
-	public LibraryService(LibraryRepository libraryRepository) {
+	public LibraryService(LibraryRepository libraryRepository
+											, LogRepository logRepository
+											, LogService logService) {
 		this.libraryRepository = libraryRepository;
 		this.logRepository = logRepository;
 	}
@@ -37,12 +40,11 @@ public class LibraryService {
 	}
 	
 	// 書籍の貸し出し処理 更新メソッド
-	public void update(Integer id, String returnDueDate, LoginUser loginUser) {
+	public Log update(Integer id, String returnDueDate, LoginUser loginUser) { // void
 		Optional<Library> optionalLibrary  = libraryRepository.findById(id);
 		Library library = optionalLibrary.get();
 		library.setUserId(loginUser.getUser().getId());
 		libraryRepository.save(library); // データベースに保存
-		
 		
 		Log log = new Log();
     log.setLibraryId(id);
@@ -54,7 +56,7 @@ public class LibraryService {
     // formatterの型(フォーマット)を変える
     log.setReturnDueDate(LocalDateTime.parse(returnDueDate + " 00:00:00", formatter));
     log.setReturnDate(null);
-    logRepository.save(log);
+    return logService.save(log); // logRepository.save(log);
 	}
 	
 	
