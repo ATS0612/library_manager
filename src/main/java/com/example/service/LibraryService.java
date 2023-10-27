@@ -27,6 +27,7 @@ public class LibraryService {
 											, LogService logService) {
 		this.libraryRepository = libraryRepository;
 		this.logRepository = logRepository;
+		this.logService = logService;
 	}
 
 	public List<Library> findAll() {
@@ -44,11 +45,11 @@ public class LibraryService {
 		Optional<Library> optionalLibrary  = libraryRepository.findById(id);
 		Library library = optionalLibrary.get();
 		library.setUserId(loginUser.getUser().getId());
-		libraryRepository.save(library); // データベースに保存
+		libraryRepository.save(library); // 本を借りたuser_(の)idをデータベースに保存。
 		
 		Log log = new Log();
-    log.setLibraryId(id);
-    log.setUserId(loginUser.getUser().getId());
+    log.setLibraryId(id); // borrowingFormからの 本のidを記録
+    log.setUserId(loginUser.getUser().getId()); // ログインしているユーザーのid保存
     // 現在の時間
     log.setRentDate(LocalDateTime.now());
     // 引数の形で時間表示(DateTimeFormatter)を用意 (String型)
