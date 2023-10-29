@@ -45,7 +45,7 @@ public class LibraryService {
 		Optional<Library> optionalLibrary  = libraryRepository.findById(id);
 		Library library = optionalLibrary.get();
 		library.setUserId(loginUser.getUser().getId());
-		libraryRepository.save(library); // 本を借りたuser_(の)idをデータベースに保存。
+		libraryRepository.save(library); // 本を借りたuser_(の)idをデータベースに保存。借りた本にuser_idを記録
 		
 		Log log = new Log();
     log.setLibraryId(id); // borrowingFormからの 本のidを記録
@@ -59,7 +59,4 @@ public class LibraryService {
     log.setReturnDate(null);
     return logService.save(log); // logRepository.save(log);
 	}
-	
-	
-
 }

@@ -37,11 +37,44 @@
 										<td th:text="${library.id}"></td>
 										<td th:text="${library.name}"></td>
 										<td>
-											<form action="/library/borrow" method="get">
-												<input type="hidden" name="id" th:value="${library.id}">
-												<input class="btn btn-info" type="submit" value="borrow">
-											</form>
+											<div th:switch="${user_id}">
+										    <p th:case="0">
+													<form action="/library/borrow" method="get">
+														<input type="hidden" name="id" th:value="${library.id}">
+														<input type="submit" class="btn btn-info" value="borrow">
+													</form>
+												</p>
+												
+										    <p th:case="1">
+													<form action="/library/return" method="post">
+														<input type="hidden" name="id" th:value="${library.id}">
+														<input type="submit" class="btn btn-danger" value="return">
+													</form>
+												</p>
+										    
+										    <p th:case="*">
+													<div class="btn btn-success">borrowing</div>
+												</p>
+											</div>
 										</td>
+<!--											<form action="/library/borrow" method="get">-->
+<!--												<input type="hidden" name="id" th:value="${library.id}">-->
+<!--												<input class="btn btn-info" type="submit" value="borrowing">-->
+<!--											</form>-->
+<!--											<form th:action="@{${library.user_id == 0} ? '/library/borrow' : '/library/return'}" -->
+<!--														th:method="${library.user_id == 0} ? 'get' : 'post'">-->
+<!--												<input type="hidden" name="id" th:value="${library.id}">-->
+<!--												<div th:switch="${library.user_id}">-->
+<!--												<p th:case="0">borrow</p>-->
+<!--												<p th:case="1">return</p>-->
+<!--												<p th:case="*">borrowing</p>-->
+<!--											</div>-->
+<!--												<input class="btn btn-info" -->
+<!--																type="submit" -->
+<!--																th:value="${library.user_id == 0 ? 'borrow' -->
+<!--																				: (library.user_id == 1 ? 'return' -->
+<!--																				: 'borrowing')}" />-->
+<!--											</form>-->
 									</tr>
 								</tbody>
 							</table>
