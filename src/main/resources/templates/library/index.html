@@ -43,11 +43,11 @@
 													<input type="submit" class="btn btn-info" value="borrow">
 												</form>
 
-												<form th:case="${#authentication.principal.user.id}" th:action="@{/library/return}" th:method="post">
+												<form th:case="${#authentication.principal.user.id}"
+													th:action="@{/library/return}" th:method="post">
 													<input type="hidden" name="id" th:value="${library.id}">
 													<input type="submit" class="btn btn-danger" value="return">
 												</form>
-
 												<div th:case="*" class="btn btn-success">borrowing</div>
 											</div>
 										</td>
