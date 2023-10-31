@@ -21,19 +21,19 @@ public class Log {
     private Integer id;
     
     @Column(name = "LIBRARY_ID")
-    private Integer library_id;
+    private Integer libraryId;
     
     @Column(name = "USER_ID")
-    private Integer user_id;
+    private Integer userId;
     
     @Column(name = "RENT_DATE")
-    private LocalDateTime rent_date;
+    private LocalDateTime rentDate;
     
     @Column(name = "RETURN_DATE")
-    private LocalDateTime return_date;
+    private LocalDateTime returnDate;
     
     @Column(name = "RETURN_DUE_DATE")
-    private LocalDateTime return_due_date;
+    private LocalDateTime returnDueDate;
     
 
     public Integer getId() {
@@ -45,41 +45,41 @@ public class Log {
     
     
     public Integer getLibraryId() {
-      return this.library_id;
+      return this.libraryId;
 	  }
-	  public void setLibraryId(Integer library_id) {
-	      this.library_id = library_id;
+	  public void setLibraryId(Integer libraryId) {
+	      this.libraryId = libraryId;
 	  }
 
     
     public Integer getUserId() {
-      return this.user_id;
+      return this.userId;
     }
-    public void setUserId(Integer user_id) {
-      this.user_id = user_id;
+    public void setUserId(Integer userId) {
+      this.userId = userId;
     }
     
     
     public LocalDateTime getRentDate() {
-      return this.rent_date;
+      return this.rentDate;
     }
-    public void setRentDate(LocalDateTime rent_date) {
-      this.rent_date = rent_date;
+    public void setRentDate(LocalDateTime rentDate) {
+      this.rentDate = rentDate;
     }
     
     
     public LocalDateTime getReturnDate() {
-      return this.return_date;
+      return this.returnDate;
     }
-    public void setReturnDate(LocalDateTime return_date) {
-      this.return_date = return_date;
+    public void setReturnDate(LocalDateTime returnDate) {
+      this.returnDate = returnDate;
     }
     
     
     public LocalDateTime getReturnDueDate() {
-      return this.return_due_date;
+      return this.returnDueDate;
     }
-    public void setReturnDueDate(LocalDateTime return_due_date) {
-      this.return_due_date = return_due_date;
+    public void setReturnDueDate(LocalDateTime returnDueDate) {
+      this.returnDueDate = returnDueDate;
     }
 }
