@@ -1,10 +1,15 @@
 package com.example.entity;
 
+import java.util.List; // リレーション設定
+
+import javax.persistence.CascadeType; // リレーション設定
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType; // リレーション設定
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany; // リレーション設定
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -26,6 +31,15 @@ public class Library {
     
 //    @Column(name = "SAMPLE")
 //    private String sample;
+    
+    @OneToMany(mappedBy = "library", cascade = CascadeType.ALL, fetch = FetchType.LAZY)// mappedByで@OneToManyと@ManyToOneで取得が被る情報参照を@ManyToOneがつけられたEntityクラスの情報だけで参照する？
+    // mappedByがある方が読み取り専用
+    // Log.java内のlibraryによってこっちは管理されている
+    private List<Log> logHistory;
+    
+    public List<Log> getLogList() {
+    	return this.logHistory;
+    }
     
 
     public Integer getId() {

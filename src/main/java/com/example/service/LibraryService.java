@@ -40,23 +40,48 @@ public class LibraryService {
 		return library; // つまり 選択されたidの情報？を返す
 	}
 	
-	// 書籍の貸し出し処理 更新メソッド
-	public Log update(Integer id, String returnDueDate, LoginUser loginUser) { // void
+	// 書籍 貸し出し処理
+	public Log borrow(Integer id, String returnDueDate, LoginUser loginUser) { // void
 		Optional<Library> optionalLibrary  = libraryRepository.findById(id);
 		Library library = optionalLibrary.get();
 		library.setUserId(loginUser.getUser().getId());
-		libraryRepository.save(library); // 本を借りたuser_(の)idをデータベースに保存。借りた本にuser_idを記録
+		libraryRepository.save(library); // 本を借りたuser_(の)idをデータベースに保存。借りた本にuser_idを記録 つまりはこの本は誰が借りましたと分かる
 		
 		Log log = new Log();
-    log.setLibraryId(id); // borrowingFormからの 本のidを記録
-    log.setUserId(loginUser.getUser().getId()); // ログインしているユーザーのid保存
-    // 現在の時間
+	// borrowingFormからの 本のidを記録
+    log.setLibraryId(id);
+  // ログインしているユーザーのidを記録
+    log.setUserId(loginUser.getUser().getId());
+  // 借りた時間を記録（現在の時間）
     log.setRentDate(LocalDateTime.now());
     // 引数の形で時間表示(DateTimeFormatter)を用意 (String型)
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-    // formatterの型(フォーマット)を変える
+  // formatterの型(フォーマット)を変えて記録
     log.setReturnDueDate(LocalDateTime.parse(returnDueDate + " 00:00:00", formatter));
+  // 返却日未定
     log.setReturnDate(null);
     return logService.save(log); // logRepository.save(log);
+	}
+	
+	// 書籍 返却処理
+	public Log returnBook(Integer id, LoginUser loginUser) {
+		Optional<Library> optionalLibrary  = libraryRepository.findById(id); // 1レコードの情報取得
+		Library library = optionalLibrary.get();
+		library.setUserId(0);
+		libraryRepository.save(library); // Library.javaのuserIdを0に更新
+		
+		Integer userId = loginUser.getUser().getId(); // ログインしているユーザーのIDをRepositoryで扱うためEntity内のフィールドの型に合わせる
+		Optional<Log> optionalLog = logRepository.findFirstByLibraryIdAndUserIdOrderByRentDateDesc(id, userId); // LIBRARY_ID と USER_ID で対象を検索し、RENT_DATEを降順にして最新情報を取得
+		Log log = optionalLog.get();
+
+		log.setReturnDate(LocalDateTime.now());
+		return logService.save(log); 
+	}
+	
+	// 書籍貸し出し履歴取得・表示
+	public List<Log> history(LoginUser loginUser) {
+		Integer userId = loginUser.getUser().getId();
+		return logRepository.findByUserId(userId);
+		
 	}
 }
